@@ -7,14 +7,14 @@ const PlaylistHero = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 flex-wrap gap-5 mt-10 items-center justify-center">
-      {playlists.map((playlist) => {
+      {playlists?.map((playlist) => {
         return (
           <PlaylistCard
-            key={playlist._id}
-            title={playlist.name}
-            image={playlist.image}
-            color={playlist.bgColor}
-            offer={playlist.offer}
+            key={playlist?._id}
+            title={playlist?.name || ''}
+            image={playlist?.image || ''}
+            color={playlist?.bgColor || ''}
+            offer={playlist?.offer || ''}
           />
         )
       })}
