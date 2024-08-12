@@ -88,7 +88,12 @@ const Checkout = () => {
   return (
     <div>
       <div>
-        <AddressForm address={address} setAddress={setAddress} />
+        <AddressForm
+          address={address}
+          setAddress={setAddress}
+          phoneNumber={phoneNumber}
+          setPhoneNumber={setPhoneNumber}
+        />
       </div>
       <button
         className="px-2 mt-2  py-2 text-sm font-semibold bg-green-500 rounded-lg text-white"
@@ -102,7 +107,7 @@ const Checkout = () => {
 }
 
 export default Checkout
-const AddressForm = ({ address, setAddress }) => {
+const AddressForm = ({ address, setAddress, phoneNumber, setPhoneNumber }) => {
   return (
     <div className="text-base w-full p-4 flex flex-col gap-2 max-w-lg bg-gray-100 rounded-xl">
       <div>
