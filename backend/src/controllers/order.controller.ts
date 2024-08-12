@@ -29,7 +29,7 @@ const createOrder = asyncHandler(
       if (!cart) {
         throw new ApiError(404, 'Cart not found')
       }
-      console.log('ran creation of order')
+
       const totalPrice = cart.items.reduce((sum, item) => {
         const product = item.product as any
         const discount = product.offerPercentage || 0
@@ -44,9 +44,8 @@ const createOrder = asyncHandler(
           userId: userId.toString(),
         },
       }
-      console.log('options ran')
+      const { address, phoneNumber } = req.body
       const razorpayOrder = await razorpay.orders.create(options)
-      console.log(razorpayOrder)
 
       const order = new Order({
         user: userId,
@@ -54,8 +53,10 @@ const createOrder = asyncHandler(
         totalPrice,
         status: 'Pending',
         paymentIntentId: razorpayOrder.id,
+        address: address,
+        phoneNumber: phoneNumber,
       })
-      console.log(order)
+
       await order.save()
 
       res.status(200).json(
